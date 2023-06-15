@@ -1,46 +1,21 @@
 'use strict';
 
-// Вывод в консоль
-console.log('Hello,from JS!');
+// ------------------ 2.2 Типы данных ----------------
+let userName = 'Serg'; // Строка (Текст)
 
-// ------------------ Переменные -------------------
-let user = 'Сергей';
-console.log(user);
+let number = 30; // Число
 
-// ------------------- Типы переменных -------------
-// let - может менять свое значение во время работы программы
-let userName = 'Сергей';
-console.log(userName);
+let isMarried = true; // Логическое значение true/false
 
-userName = 'Виталий';
-console.log(userName);
+// Динамическая типизация
+let someVeriable = 'Some value'; // сейчас someVeriable строка (string)
+someVeriable = 50; // теперь число (number)
+someVeriable = true; // теперь логическое значение (boolean)
+console.log(someVeriable);
 
-// const - не может менять значение
-const yearOfBirth = 1990;
+// Значение null
+// "ничего", "пусто" или "значение неизвестно"
+let age = 10;
+age = null;
 
-// var - устаревший формат объявления переменной (не рекомендуеться к использованю)
-
-var city = 'Moscow';
-city = 'Barnaul';
-console.log(city);
-
-function sum() {
-    var  name = 'Yurij'
-    console.log(name);
-}
-sum();
-// name не выведется в консоль (доступна только внутри функции)
-// console.log(name); 
-
-{
-    let userName2 = 'Ivan';
-    console.log(userName2);
-
-    var someNumber = 10;
-    console.log(someNumber);
-}
-// userName вне зоны видимости, выдаст ошибку 
-// console.log(userName2);
-console.log(someNumber);
-
-
+// Значение undefined

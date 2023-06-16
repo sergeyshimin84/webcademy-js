@@ -19,3 +19,35 @@ let age = 10;
 age = null;
 
 // Значение undefined
+// Небыло присвоено или неопределено
+let txt; // undefined
+console.log(txt);
+
+// Структуры данных:
+// Объекты object
+// Массивы
+
+// Оператор typeof
+const someName = 'Vadim';
+console.log(typeof someName); //определяем тип переменной
+
+// BigInt
+console.log(Number.MAX_SAFE_INTEGER);
+console.log(90071992547409911646546846151n);//добавляя n применяем BigInt
+
+//Symbol
+//Символ - уникальное примитивное значение
+//Позволяет добавить уникальное свойство к объекту, с
+//уверенностью что он не перезапишет никакое другое свойство.
+
+/*
+Числа number
+Строки string
+Булевый тип данных boolean
+null
+undefined
+Объекты object
+Массивы
+BigInt
+Symbol
+*/ 

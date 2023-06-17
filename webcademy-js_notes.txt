@@ -89,3 +89,19 @@ function summ(a, b) {
 
 let res = summ(15, 20);
 console.log(res);
+
+6.3 Функции как аргумент
+function summ(a, b) {
+    return a + b; //без return вместо аргумента возвращался бы undefined
+}
+
+const result = summ(summ(10, 15), summ(20, 20)); //функция передается как аргумент
+console.log(result);
+
+// колбэк функция (функция обратного вызова вызываемая в другой функции)
+function doSomething(func) {
+    let result = func(10, 15);
+    console.log(result);
+}
+
+doSomething(summ);

@@ -1,23 +1,25 @@
 'use strict';
 
-// ------------------ 6.1 Параметры и аргументы для функций ----------------
+// ------------------ 6.3 Функции как аргумент ----------------
 
-// const userName = 'Марк';
-// console.log(`Привет, ${userName}! Как твои дела`);
-
-function sayHi(name) {
-    console.log(`Привет, ${name}! Как твои дела`);
-}
-
-sayHi('Марк');
-sayHi('Олег');
-sayHi('Женя');
-
-// ------------------- 6.2 return -----------------------
 function summ(a, b) {
-    const result = a + b;
-    return result;//после return функция завершает работу
+    return a + b; //без return вместо аргумента возвращался бы undefined
 }
 
-let res = summ(15, 20);
-console.log(res);
+const result = summ(summ(10, 15), summ(20, 20)); //функция передается как аргумент
+console.log(result);
+
+function diff (a, b) {
+    return a - b;
+}
+
+// колбэк функция (функция обратного вызова вызываемая в другой функции)
+function doSomething(func) {
+    let x = 15;
+    let y = 5;
+    let result = func(x, y);
+    console.log(result);
+}
+
+doSomething(summ);
+doSomething(diff);

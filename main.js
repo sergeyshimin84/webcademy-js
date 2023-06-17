@@ -1,11 +1,16 @@
 'use strict';
 
-// ------------------ 5. Конкатенация строк и шаблонные строки ----------------
+// ------------------ 6. Функции ----------------
 
-// конкатенация 'строка' + 'строка'
-const userName = 'Oleg';
-console.log('Привет, ' + userName + '! Как твои дела?');//Не удобно потдерживать
+sayHi();
+seyHi();
+// function decloration
+function sayHi() {
+    console.log('Привет!');
+}
 
-// шаблонные строки
-console.log(`Привет, ${userName}! Как твои дела?`);
+// function expression
+const seyHi = function () {
+    console.log('Привет!');
+}
 

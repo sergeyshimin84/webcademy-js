@@ -105,3 +105,17 @@ function doSomething(func) {
 }
 
 doSomething(summ);
+
+6.4 Самовызывающаяся функция IIFE
+(function () {//Можно не указывать название (ананимная самовызывающаяся функция) 
+    console.log('Привет, дорогой пользователь!');
+})();//Сразу вызываем функцию
+
+(function (a, b) {
+    console.log(a + b);
+})(10, 15);
+
+let res = (function (a, b) {
+    return a + b;
+})(5, 10);
+console.log(res);

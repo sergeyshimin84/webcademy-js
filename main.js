@@ -1,25 +1,16 @@
 'use strict';
 
-// ------------------ 6.3 Функции как аргумент ----------------
+// ------------------ 6.4 Самовызывающаяся функция IIFE ----------------
 
-function summ(a, b) {
-    return a + b; //без return вместо аргумента возвращался бы undefined
-}
+(function () {//Можно не указывать название (ананимная самовызывающаяся функция) 
+    console.log('Привет, дорогой пользователь!');
+})();//Сразу вызываем функцию
 
-const result = summ(summ(10, 15), summ(20, 20)); //функция передается как аргумент
-console.log(result);
+(function (a, b) {
+    console.log(a + b);
+})(10, 15);
 
-function diff (a, b) {
-    return a - b;
-}
-
-// колбэк функция (функция обратного вызова вызываемая в другой функции)
-function doSomething(func) {
-    let x = 15;
-    let y = 5;
-    let result = func(x, y);
-    console.log(result);
-}
-
-doSomething(summ);
-doSomething(diff);
+let res = (function (a, b) {
+    return a + b;
+})(5, 10);
+console.log(res);

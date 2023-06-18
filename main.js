@@ -1,32 +1,16 @@
 'use strict';
 
-// ------------------ 6.5 Стрелочные функции ----------------
+// ------------------ 7. Массивы ----------------
 
-// Пример обычной функции
-function sayHi(name) {
-    console.log(`Привет, ${name}! Как твои дела?`);
-}
-sayHi('Марк');
+const autoBrands = ['Audi', 'BMW', 'Mazda', 'Toyota'];
+console.log(autoBrands);
 
-function summ (a, b) {
-    const result = a + b;
-}
-summ(15, 15);
+// Выведем только Audi
+console.log(autoBrands[0]);
 
-// Стрелочные функции
-const sayHi2 = (name) => {
-    console.log(`Привет, ${name}! Как твои дела?`);
-}
-sayHi2('Марк');
+// Выводим длину массива
+console.log(autoBrands.length);
 
-const summ2 = (a, b) => {
-    return a + b;
-}
-summ2(10, 15);
-
-// Краткая запись стрелочной функции (без фигурных скобок), в случае если выполняеться одно условие
-const sayHi3 = (name) => console.log(`Привет, ${name}! Как твои дела?`);
-sayHi3('Марк');
-
-const summ3 = (a, b) => a + b;
-summ3(5, 15);
+// Можно вкладывать различные занные и другие массивы (но это плохая практика, необьходимо создавать однородные массивы)
+const autoBrands2 = ['Audi', 'BMW', true, ['Mazda', 'Toyota'], 70];
+console.log(autoBrands2);

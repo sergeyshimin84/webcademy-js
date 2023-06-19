@@ -171,3 +171,20 @@ arr.pop() - Удалить элемент из конца массива
 arr.shift() - Удалить элемент из начала массива
 arr/unshift(...items) - Добавить элемент в начало массива
 arr.splice([start]), [deketeCount, newElements])
+
+8. Циклы
+console.log('Start');
+
+for (let i = 0; i < 10; i++) {
+    console.log(i);
+}
+
+console.log('Finish');
+
+9. Обход массива иклом for
+const autoBrands = ['Audi', 'BMW', 'Mazda', 'Toyota', 'Nissan']; 
+console.log(autoBrands.length);
+
+for (let i = 0; i < autoBrands.length; i++) {
+    console.log(autoBrands[i]);
+}

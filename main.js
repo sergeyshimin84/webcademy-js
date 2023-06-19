@@ -1,19 +1,36 @@
 'use strict';
 
-// ------------------ 8. Циклы ----------------
-console.log('Start');
+// ------------------ 10. Обход массива циклом for (of) ----------------
 
-for (let i = 0; i < 5; i++) {
-    console.log(i);
+const autoBrands = ['Audi', 'BMW', 'Mazda']; 
+// Все элементы из массива autoBrands попадают в переменную brand
+for (let brand of autoBrands) {
+    console.log(brand);
 }
 
-console.log('Finish');
+// ------------------ 11. Обход массива методом forEach() ----------------
+// В переменную brand попадают все элементы массива, в i индекс элемента
+// Прописываем функцию в качестве аргумента в forEach
+autoBrands.forEach(function (brand, i) {
+    console.log(`${brand} => ${i}`);
+});
 
-// ------------------ 9. Обход массива иклом for ----------------
+// Пример со стрелоочной функцией
+autoBrands.forEach((brand, i) => {
+    console.log(`${brand} => ${i}`);
+});
 
-const autoBrands = ['Audi', 'BMW', 'Mazda', 'Toyota', 'Nissan']; 
-console.log(autoBrands.length);
+// Запись в строчку
+autoBrands.forEach((brand, i) => {console.log(`${brand} => ${i}`)});
 
-for (let i = 0; i < autoBrands.length; i++) {
-    console.log(autoBrands[i]);
+// Создаем функцию отдельно, передаем в forEach в качестве аргумента
+function printBrand (brand, i) {
+    console.log(`${brand} => ${i}`);
 }
+autoBrands.forEach(printBrand);
+
+// Пример со стрелоочной функцией
+const printBrand2 = (brand, i) => {
+    console.log(`${brand} => ${i}`);
+}
+autoBrands.forEach(printBrand2);

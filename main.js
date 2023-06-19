@@ -1,36 +1,25 @@
 'use strict';
 
-// ------------------ 10. Обход массива циклом for (of) ----------------
+// ------------------ 12. Обьекты ----------------
+// Свойства объектов
+let userName = 'Марк' 
+let age = 30;
+let isMArried = false;
 
-const autoBrands = ['Audi', 'BMW', 'Mazda']; 
-// Все элементы из массива autoBrands попадают в переменную brand
-for (let brand of autoBrands) {
-    console.log(brand);
+const person = {
+    userName: 'Марк', 
+    age: 30,
+    isMArried: false
 }
 
-// ------------------ 11. Обход массива методом forEach() ----------------
-// В переменную brand попадают все элементы массива, в i индекс элемента
-// Прописываем функцию в качестве аргумента в forEach
-autoBrands.forEach(function (brand, i) {
-    console.log(`${brand} => ${i}`);
-});
+console.log(person);
+console.log(person.userName);
+console.log(person['age']);
 
-// Пример со стрелоочной функцией
-autoBrands.forEach((brand, i) => {
-    console.log(`${brand} => ${i}`);
-});
+// Добавляем свойство объекта
+person.profession = 'JS developer';
+console.log(person);
 
-// Запись в строчку
-autoBrands.forEach((brand, i) => {console.log(`${brand} => ${i}`)});
-
-// Создаем функцию отдельно, передаем в forEach в качестве аргумента
-function printBrand (brand, i) {
-    console.log(`${brand} => ${i}`);
-}
-autoBrands.forEach(printBrand);
-
-// Пример со стрелоочной функцией
-const printBrand2 = (brand, i) => {
-    console.log(`${brand} => ${i}`);
-}
-autoBrands.forEach(printBrand2);
+// Удаляем свойство
+delete person.age;
+console.log(person);

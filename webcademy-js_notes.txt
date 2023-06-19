@@ -163,3 +163,11 @@ console.log(autoBrands.length);
 // Можно вкладывать различные занные и другие массивы (но это плохая практика, необьходимо создавать однородные массивы)
 const autoBrands2 = ['Audi', 'BMW', true, ['Mazda', 'Toyota'], 70];
 console.log(autoBrands2);
+
+7.1 Методы массивов
+//Некоторые базовые методы:
+arr.push(items) - Добавить элемент в конец массива
+arr.pop() - Удалить элемент из конца массива
+arr.shift() - Удалить элемент из начала массива
+arr/unshift(...items) - Добавить элемент в начало массива
+arr.splice([start]), [deketeCount, newElements])

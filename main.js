@@ -1,25 +1,36 @@
 'use strict';
 
-// ------------------ 12. Обьекты ----------------
-// Свойства объектов
-let userName = 'Марк' 
-let age = 30;
-let isMArried = false;
-
+// ------------------ 13. Методы в объектах ----------------
+// Метод в который записана функция называется методом объекта 
 const person = {
     userName: 'Марк', 
     age: 30,
-    isMArried: false
-}
+    isMArried: false,
+    sayHi: function (name) {
+        console.log(`Привет, ${name}!`);
+    }
+};
+// Вызываеться как функциия
+person.sayHi('Олег');
 
-console.log(person);
-console.log(person.userName);
-console.log(person['age']);
-
-// Добавляем свойство объекта
-person.profession = 'JS developer';
-console.log(person);
-
-// Удаляем свойство
-delete person.age;
-console.log(person);
+// this
+const person2 = {
+    userName: 'Сергей', 
+    age: 40,
+    isMArried: true,
+    sayHi: function (name) {
+        console.log(`Привет, ${name}! Меня зовут ${person2.userName}.`);
+    }
+};
+person2.sayHi('Андрей');
+// this ссылаеться сразу на объект
+const person3 = {
+    userName: 'Сергей', 
+    age: 40,
+    isMArried: true,
+    sayHi: function (name) {
+        console.log(this);
+        console.log(`Привет, ${name}! Меня зовут ${this.userName}.`);
+    }
+};
+person3.sayHi('Андрей');

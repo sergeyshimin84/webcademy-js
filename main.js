@@ -1,36 +1,17 @@
 'use strict';
 
-// ------------------ 13. Методы в объектах ----------------
-// Метод в который записана функция называется методом объекта 
+// ------------------ 15. Объекты обход циклом for in ----------------
+// for in может обходить не итерируемые объекты
 const person = {
-    userName: 'Марк', 
-    age: 30,
-    isMArried: false,
-    sayHi: function (name) {
-        console.log(`Привет, ${name}!`);
+    userName: 'Сергей', 
+    age: 40,
+    isMArried: true,
+    sayHi: function (yourName) {
+        console.log(`Привет, ${yourName}! Меня зовут ${this.userName}.`);
     }
 };
-// Вызываеться как функциия
-person.sayHi('Олег');
+person.sayHi('Андрей');
 
-// ------------------ 14. Ключевое слово this ----------------
-const person2 = {
-    userName: 'Сергей', 
-    age: 40,
-    isMArried: true,
-    sayHi: function (name) {
-        console.log(`Привет, ${name}! Меня зовут ${person2.userName}.`);
-    }
-};
-person2.sayHi('Андрей');
-// this ссылаеться сразу на объект
-const person3 = {
-    userName: 'Сергей', 
-    age: 40,
-    isMArried: true,
-    sayHi: function (name) {
-        console.log(this);
-        console.log(`Привет, ${name}! Меня зовут ${this.userName}.`);
-    }
-};
-person3.sayHi('Андрей');
+for (let key in person) {
+    console.log(key, ':', person[key]);
+}

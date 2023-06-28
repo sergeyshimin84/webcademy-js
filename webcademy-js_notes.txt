@@ -380,3 +380,21 @@ paragraphs.forEach(function (item) {
 document.getElementsByClassName();// выбор по имени класса
 document.getElementsByTagName();// выбор по тегу
 document.getElementById('');// выбор по id
+
+–абота с CSS классами
+/* 
+element.classList.add()
+.add() добавл€ет класс
+.remove() удал€ет класс
+.toggle() добавл€ет или удал€ет класс при его наличии ("переключатель"). 
+ огда toggle добавл€ет класс, возвращает true, когда убиррает false.
+.contaiins() провер€ет наличие класса у элемента. ¬озвращает true или false.
+*/
+
+const heading = document.querySelector('h2');
+console.log(heading);
+
+heading.classList.add('red-text');
+heading.classList.remove('red-text');
+heading.classList.toggle('green-text');
+heading.classList.toggle('green');

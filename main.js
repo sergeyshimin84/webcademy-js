@@ -1,20 +1,31 @@
 'use strict';
 
-// ------------------ Работа с CSS классами ----------------
+// ------------------ Работа с атрибутами ----------------
 
-/* 
-element.classList.add()
-.add() добавляет класс
-.remove() удаляет класс
-.toggle() добавляет или удаляет класс при его наличии ("переключатель"). 
-Когда toggle добавляет класс, возвращает true, когда убиррает false.
-.contaiins() проверяет наличие класса у элемента. Возвращает true или false.
+/*
+getAttribute(attrName) - возвращает значение указанного атрибута
+setAttribute(name, value) - добавляет указанные атрибуты и его значения к элементу
+hasAttribute(attrName) - возвращает true при наличии у элемента указанного атрибута
+removeAttribute(attrName) - удаляет указанный атрибут
 */
 
-const heading = document.querySelector('h2');
-console.log(heading);
+// получаем элемент по id
+const img = document.querySelector('#logo');
+const srcValue = img.getAttribute('src');
+console.log(srcValue);
 
-heading.classList.add('red-text');
-heading.classList.remove('red-text');
-heading.classList.toggle('green-text');
-heading.classList.toggle('green');
+// меняем значение атрибута src (заменяем картинку)
+// первым занчением добавляем/обращаемся к атрибуту, вторым значением прописываем его свойства
+img.setAttribute('src', './img/php.png');
+// указываем ширину картинки
+img.setAttribute('width', '200');
+// к некоторым атрибутам возможно обратиться на прямую
+img.src = './img/js.png';
+// проверяем есть ли атрибут, возвращает true или false
+console.log(img.hasAttribute('src'));
+// удаляем атрибут ширины картинки
+img.removeAttribute('width');
+
+const button = document.querySelector('#button');
+button.setAttribute('value', 'Отправить');
+button.value = 'Текст для кнопки';

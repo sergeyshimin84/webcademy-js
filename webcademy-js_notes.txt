@@ -427,3 +427,21 @@ img.removeAttribute('width');
 const button = document.querySelector('#button');
 button.setAttribute('value', 'ќтправить');
 button.value = '“екст дл€ кнопки';
+
+–абота с прослушкой событий
+
+// находим кнопку
+const button = document.querySelector('#button');
+// ноходим картинку
+const img = document.querySelector('#logo');
+// мен€ем название кнопки
+button.value = 'удалить';
+// прослушиваем событие клик (позвол€ет прописать множество действий при клике)
+button.addEventListener('click', function() {
+    console.log('click!');
+    img.remove();
+});
+// onclick совершает указанное действие при клике (в последующем только перезаписываетьс€)
+button.onclick = function () {
+    console.log('click1!');
+};

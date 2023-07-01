@@ -1,31 +1,19 @@
 'use strict';
 
-// ------------------ Работа с атрибутами ----------------
+// ------------------ Работа с прослушкой событий ----------------
 
-/*
-getAttribute(attrName) - возвращает значение указанного атрибута
-setAttribute(name, value) - добавляет указанные атрибуты и его значения к элементу
-hasAttribute(attrName) - возвращает true при наличии у элемента указанного атрибута
-removeAttribute(attrName) - удаляет указанный атрибут
-*/
-
-// получаем элемент по id
-const img = document.querySelector('#logo');
-const srcValue = img.getAttribute('src');
-console.log(srcValue);
-
-// меняем значение атрибута src (заменяем картинку)
-// первым занчением добавляем/обращаемся к атрибуту, вторым значением прописываем его свойства
-img.setAttribute('src', './img/php.png');
-// указываем ширину картинки
-img.setAttribute('width', '200');
-// к некоторым атрибутам возможно обратиться на прямую
-img.src = './img/js.png';
-// проверяем есть ли атрибут, возвращает true или false
-console.log(img.hasAttribute('src'));
-// удаляем атрибут ширины картинки
-img.removeAttribute('width');
-
+// находим кнопку
 const button = document.querySelector('#button');
-button.setAttribute('value', 'Отправить');
-button.value = 'Текст для кнопки';
+// ноходим картинку
+const img = document.querySelector('#logo');
+// меняем название кнопки
+button.value = 'удалить';
+// прослушиваем событие клик (позволяет прописать множество действий при клике)
+button.addEventListener('click', function() {
+    console.log('click!');
+    img.remove();
+});
+// onclick совершает указанное действие при клике (в последующем только перезаписываеться)
+button.onclick = function () {
+    console.log('click1!');
+};

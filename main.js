@@ -1,19 +1,18 @@
 'use strict';
 
-// ------------------ Работа с прослушкой событий ----------------
+// ------------------ Прослушка событий 2. Форма ----------------
 
-// находим кнопку
-const button = document.querySelector('#button');
-// ноходим картинку
-const img = document.querySelector('#logo');
-// меняем название кнопки
-button.value = 'удалить';
-// прослушиваем событие клик (позволяет прописать множество действий при клике)
-button.addEventListener('click', function() {
-    console.log('click!');
-    img.remove();
-});
-// onclick совершает указанное действие при клике (в последующем только перезаписываеться)
-button.onclick = function () {
-    console.log('click1!');
+const inputText = document.querySelector('#input-text');
+const textBlock = document.querySelector('#text-block');
+
+// inputText.addEventListener('input', () => {
+//     console.log(inputText.value);
+//     textBlock.innerText = inputText.value;
+// })
+
+inputText.addEventListener('input', inputHandler);
+
+function inputHandler() {
+    console.log(inputText.value);
+    textBlock.innerText = inputText.value;
 };

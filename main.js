@@ -1,49 +1,51 @@
 'use strict';
 
-// ------------------ Работа с элементами ----------------
+// ------------------ ToDo список задач ----------------
 
-/*
-// Создать элемент
-document.createElement('tag-name')
+const todoList = document.querySelector('#todo-list');
+const todoForm = document.querySelector('#todo-form');
+const todoInput = document.querySelector('#todo-input');
 
-// Изменить HTML содержимое внутри элемента
-element.innerHTML = ''
+todoForm.addEventListener('submit', formHandler);
 
-// Изменить текстовое содержимое внутри элемента
-none.innerText = ''
+function formHandler(event) {
+    event.preventDefault();
 
-// Клонирование элемента
-node.cloneNode() // true с внутренним содержанием (текста и теги),
-false - без внутреннего содержания
+    // Получаем значение из поля ввода (инпута)
+    const taskText = todoInput.value;
 
-// Вставить элемент внутрь другого элемента
-element.append(nodesOrDOMStrings)
+    // Создаем тег li через разметку
+    // const li = `<li>${taskText}</li>`;
 
-// Удалить элемент
-element.remove()
-*/
+    // Добавляем разметку на страницу
+    // todoList.insertAdjacentHTML('beforeend',  li);
 
-// Выбор контейнера
-const container = document.querySelector('#elementsContainer');
+    // Создаем тег li с помощью создания элемента (в последующем можем модифицировать, добавлять элементы)
+    const newTask = document.createElement('li');
+    newTask.innerText = taskText;
+    console.log(newTask);
 
-// Создание загловка
-const newHeader = document.createElement('h1');
-newHeader.innerText = 'Новый заголовок';
-container.append(newHeader);
+    // Создаем кнопку удалить
+    const deleteBtn = document.createElement('button');
+    deleteBtn.setAttribute('role', 'button'); //Назначена роль кнопка
+    deleteBtn.innerText = 'Удалить';
+    deleteBtn.style['margin-left'] = '15px';
+    newTask.append(deleteBtn);
+    console.log(newTask);
+    deleteBtn.addEventListener('click', function () {
+        // newTask.remove() //Простое удаление элемента
+        
+        // Обращаемся к родительскому элементу через this, ищем ближайшего предка,
+        // который соответствует CSS-селектору 'li' с помощью closest, удаляем его (более точное описание удаления)
+        this.closest('li').remove();
+    });
 
-// Копирование шапки
-const mainHeader = document.querySelector('header');
-// Для копирования всего содержимого тега в метод cloneNode передаем true 
-const headerCopy = mainHeader.cloneNode(true);
-// Вставляем элемент в container
-container.append(headerCopy);
+    // Добавляем элемент на страницу
+    todoList.append(newTask)
 
-// Вставка разметки через строку
-const htmlExample = '<h2>Еще один заголовок</h2>';
-container.insertAdjacentHTML('beforeend', htmlExample);
-
-// Вставка разметки через шаблонные строки
-const title = 'Текст заголовка';
-// Передаем текст через шаблонную строку
-const htmlExample2 = `<h2>${title}</h2>`;
-container.insertAdjacentHTML('beforeend', htmlExample2);
+    // Очищаем поле ввода (инпут)
+    todoInput.value = '';
+    
+    // Фокус на поле ввода
+    todoInput.focus();
+}

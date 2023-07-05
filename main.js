@@ -1,51 +1,62 @@
 'use strict';
 
-// ------------------ ToDo список задач ----------------
+// ------------------ setInterval ----------------
 
-const todoList = document.querySelector('#todo-list');
-const todoForm = document.querySelector('#todo-form');
-const todoInput = document.querySelector('#todo-input');
+// Позволяет запускать код с определенной периодичностью
+// Первым аргументом передается функция, вторым время в мс
+// const timeIntervalID = setInterval(function () {
+//     console.log('Approved!');
+// }, 2000);
+// Прекращает работу setInterval (возвращает id, отследив его прекращает работу) 
+// clearInterval(timeIntervalID);
 
-todoForm.addEventListener('submit', formHandler);
+// ------------------ setTimeout ----------------
+// Запускает работу функции через определенное время
+// const timerID = setTimeout(function () {
+//     console.log('setTimeout Approved!');
+// }, 2000);
+// Прекращает работу setTimeout
+// clearInterval(timerID);
 
-function formHandler(event) {
-    event.preventDefault();
+// ------------------ setInterval + setTimeout ----------------
+// const timerID = setInterval(function () {
+//     console.log('setInterval ON');
+// }, 1000)
 
-    // Получаем значение из поля ввода (инпута)
-    const taskText = todoInput.value;
+// setTimeout(function () {
+//     clearInterval(timerID);
+//     console.log('setInterval OFF');
+// }, 10000)
 
-    // Создаем тег li через разметку
-    // const li = `<li>${taskText}</li>`;
+// ------------------ Секундомер ----------------
 
-    // Добавляем разметку на страницу
-    // todoList.insertAdjacentHTML('beforeend',  li);
+const counterElement = document.querySelector('#counter');
+let counter = 0;
+let timerID;
 
-    // Создаем тег li с помощью создания элемента (в последующем можем модифицировать, добавлять элементы)
-    const newTask = document.createElement('li');
-    newTask.innerText = taskText;
-    console.log(newTask);
-
-    // Создаем кнопку удалить
-    const deleteBtn = document.createElement('button');
-    deleteBtn.setAttribute('role', 'button'); //Назначена роль кнопка
-    deleteBtn.innerText = 'Удалить';
-    deleteBtn.style['margin-left'] = '15px';
-    newTask.append(deleteBtn);
-    console.log(newTask);
-    deleteBtn.addEventListener('click', function () {
-        // newTask.remove() //Простое удаление элемента
-        
-        // Обращаемся к родительскому элементу через this, ищем ближайшего предка,
-        // который соответствует CSS-селектору 'li' с помощью closest, удаляем его (более точное описание удаления)
-        this.closest('li').remove();
-    });
-
-    // Добавляем элемент на страницу
-    todoList.append(newTask)
-
-    // Очищаем поле ввода (инпут)
-    todoInput.value = '';
-    
-    // Фокус на поле ввода
-    todoInput.focus();
+// Старт
+const btnStart = document.querySelector('#start');
+btnStart.onclick = function () {
+    timerID = setInterval(function(){
+        counter++;
+        counterElement.innerText = counter;
+    }, 1000)
 }
+
+// Пауза
+const btnPause = document.querySelector('#pause');
+btnPause.onclick = function () {
+    clearInterval(timerID);
+}
+
+// Сброс
+const btnReset = document.querySelector('#reset');
+btnReset.onclick = function () {
+    counter = 0;
+    counterElement.innerText = counter;
+    clearInterval(timerID);  
+};
+
+
+
+

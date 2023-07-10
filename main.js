@@ -51,6 +51,35 @@
 // }
 
 // Сделаем функцию более универсальной
+// function checkRooms(success, failed){
+//     setTimeout(function(){
+//         console.log('Проверяем номера в отеле...');
+//         const availableRooms = true;
+
+//         if (availableRooms) {
+//             let message = 'Номера есть';
+//             success(message);
+//         } else {
+//             let message = 'Номеров нет';
+//             failed(message);
+//         }
+//     }, 1000)        
+// }
+// передаем в качестве аргументов функции sumbitVacation и cancelVacation
+// checkRooms(sumbitVacation, cancelVacation);
+
+// function cancelVacation(message) {
+//     console.log('---cancelVacation---');
+//     console.log('Ответ на предыдцщем шаге:', message);
+//     console.log('Отпуск отменяется :(');
+// }
+
+// function sumbitVacation(message) {
+//     console.log('---sumbitVacation---');
+//     console.log('Ответ на предыдцщем шаге:', message);
+//     console.log('Едем в отпуск! :)');
+// }
+
 function checkRooms(success, failed){
     setTimeout(function(){
         console.log('Проверяем номера в отеле...');
@@ -65,8 +94,24 @@ function checkRooms(success, failed){
         }
     }, 1000)        
 }
-// передаем в качестве аргументов функции sumbitVacation и cancelVacation
-checkRooms(sumbitVacation, cancelVacation);
+
+function checkTickets(message, success, failed) {
+    setTimeout(function(){
+        console.log('---- function checkTickets ----');
+        console.log('Ответ на предыдущм шаге:', message);
+
+        console.log('Проверяем авиабилеты...');
+        const availableTickets = true;
+
+        if (availableTickets) {
+            let message = 'Билеты есть';
+            success(message);
+        } else {
+            let message = 'Билетов нет';
+            failed(message);
+        }
+    }, 500)
+}
 
 function cancelVacation(message) {
     console.log('---cancelVacation---');
@@ -79,3 +124,21 @@ function sumbitVacation(message) {
     console.log('Ответ на предыдцщем шаге:', message);
     console.log('Едем в отпуск! :)');
 }
+
+// передаем в качестве аргументов функции sumbitVacation и cancelVacation
+checkRooms(
+    function(messageFromCheckRooms){
+        checkTickets(
+            messageFromCheckRooms, 
+            function(messageFromCheckRooms){
+                sumbitVacation(messageFromCheckRooms)
+            },
+            function(messageFromCheckTickets){
+                cancelVacation(messageFromCheckTickets)
+            })
+    }, 
+    function(messageFromCheckRooms){
+        cancelVacation(messageFromCheckRooms)
+    }
+);
+

@@ -1,144 +1,33 @@
 'use strict';
 
-// ------------------ Collback, Collback hell ----------------
-// Обратный вызов, это функции которые передаются в другие функции и вызываются после их завершения
-// 1. Проверяем номера в отеле
-// 2. Проверяем авиобилеты
-// function checkRooms(){
-//     setTimeout(function(){
-//         console.log('Проверяем номера в отеле...');
-//         const availableRooms = false;
+// ------------------ Создание промиса ----------------
 
-//         if (availableRooms) {
-//             console.log('Номера есть!');
-//             console.log('Едем в отпуск! :)');
-//         } else {
-//             console.log('Номеров нет.');
-//             console.log('Отпуск отменяется :(');
-//         }
-//     }, 1000)
-// }
-// При проверке номеров в отеле вродебы все работает, но если добавить еще одно действие...
-// checkRooms();
-
-// function checkRooms(){
-//     setTimeout(function(){
-//         console.log('Проверяем номера в отеле...');
-//         const availableRooms = true;
-
-//         if (availableRooms) {
-//             let message = 'Номера есть';
-//             sumbitVacation(message)
-//         } else {
-//             let message = 'Номеров нет';
-//             cancelVacation(message)
-//         }
-//     }, 1000)        
-// }
-
-// checkRooms();
-
-// function cancelVacation(message) {
-//     console.log('---cancelVacation---');
-//     console.log('Ответ на предыдцщем шаге:', message);
-//     console.log('Отпуск отменяется :(');
-// }
-
-// function sumbitVacation(message) {
-//     console.log('---sumbitVacation---');
-//     console.log('Ответ на предыдцщем шаге:', message);
-//     console.log('Едем в отпуск! :)');
-// }
-
-// Сделаем функцию более универсальной
-// function checkRooms(success, failed){
-//     setTimeout(function(){
-//         console.log('Проверяем номера в отеле...');
-//         const availableRooms = true;
-
-//         if (availableRooms) {
-//             let message = 'Номера есть';
-//             success(message);
-//         } else {
-//             let message = 'Номеров нет';
-//             failed(message);
-//         }
-//     }, 1000)        
-// }
-// передаем в качестве аргументов функции sumbitVacation и cancelVacation
-// checkRooms(sumbitVacation, cancelVacation);
-
-// function cancelVacation(message) {
-//     console.log('---cancelVacation---');
-//     console.log('Ответ на предыдцщем шаге:', message);
-//     console.log('Отпуск отменяется :(');
-// }
-
-// function sumbitVacation(message) {
-//     console.log('---sumbitVacation---');
-//     console.log('Ответ на предыдцщем шаге:', message);
-//     console.log('Едем в отпуск! :)');
-// }
-
-function checkRooms(success, failed){
+const myPromise = new Promise(function (resolve, reject){
+    console.log('Promise created');
     setTimeout(function(){
-        console.log('Проверяем номера в отеле...');
-        const availableRooms = true;
+        const response = true;
 
-        if (availableRooms) {
-            let message = 'Номера есть';
-            success(message);
+        if (response) {
+            let message = 'SUCCESS'
+            resolve(message);
         } else {
-            let message = 'Номеров нет';
-            failed(message);
+            let message = 'FAILED'
+            reject(message);
         }
-    }, 1000)        
-}
+    }, 1500)
+});
 
-function checkTickets(message, success, failed) {
-    setTimeout(function(){
-        console.log('---- function checkTickets ----');
-        console.log('Ответ на предыдущм шаге:', message);
-
-        console.log('Проверяем авиабилеты...');
-        const availableTickets = true;
-
-        if (availableTickets) {
-            let message = 'Билеты есть';
-            success(message);
-        } else {
-            let message = 'Билетов нет';
-            failed(message);
-        }
+myPromise.then(function(data){
+    setTimeout(() => {
+        console.log('Then 1');
+        console.log(data);
+    }, 1000)
+}).then(function(data){
+    setTimeout(() => {
+        console.log('Then 2');
     }, 500)
-}
-
-function cancelVacation(message) {
-    console.log('---cancelVacation---');
-    console.log('Ответ на предыдцщем шаге:', message);
-    console.log('Отпуск отменяется :(');
-}
-
-function sumbitVacation(message) {
-    console.log('---sumbitVacation---');
-    console.log('Ответ на предыдцщем шаге:', message);
-    console.log('Едем в отпуск! :)');
-}
-
-// передаем в качестве аргументов функции sumbitVacation и cancelVacation
-checkRooms(
-    function(messageFromCheckRooms){
-        checkTickets(
-            messageFromCheckRooms, 
-            function(messageFromCheckRooms){
-                sumbitVacation(messageFromCheckRooms)
-            },
-            function(messageFromCheckTickets){
-                cancelVacation(messageFromCheckTickets)
-            })
-    }, 
-    function(messageFromCheckRooms){
-        cancelVacation(messageFromCheckRooms)
-    }
-);
+}).catch(function(data){
+    console.log('Catch');
+    console.log(data);
+})
 

@@ -16,15 +16,26 @@ const myPromise = new Promise(function (resolve, reject){
         }
     }, 1500)
 });
-
+// для гарантированного последовательного выполения ассинхроннго кода необходимо оборачивать в Promise каждый then
 myPromise.then(function(data){
-    setTimeout(() => {
-        console.log('Then 1');
-        console.log(data);
-    }, 1000)
+    return new Promise(function(resolve, reject){
+        setTimeout(() => {
+            console.log('Then 1');
+            console.log(data);
+
+            const response = false;
+            if (response) {
+                resolve('Data from then 1')
+            } else {
+                reject('Data from then 1')
+            }
+        }, 1000)
+    })
+    
 }).then(function(data){
     setTimeout(() => {
         console.log('Then 2');
+        console.log(data);
     }, 500)
 }).catch(function(data){
     console.log('Catch');

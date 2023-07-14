@@ -1,32 +1,28 @@
 'use strict';
 
-// ------------------ Цепочка промисов. Несколько промисов с setTimeout ----------------
+// ------------------ Цепочка промисов. Отдельные функции. Несколько промисов с setTimeout ----------------
 
-const checkRooms = new Promise(function(resolve, reject){
-    setTimeout(function () {
-        console.log('Проверяем номера в отеле...');
-        const availableRooms = true;
+checkRooms()
+    .then(checkTickets)
+    .then(success)
+    .catch(failed);
 
-        if (availableRooms) {
-            resolve('Номера есть!');
-        } else {
-            reject('Номеров нет.');
-        }
-    }, 1500)
-});
-// в then попадает успешный результат resolve
-// checkRooms.then(function(data){
-//     console.log('--- then 1 ---');
-//     console.log('Ответ на предыдущем шаге:', data);
-//     console.log('Едем в отпуск! :)');
-// в catch попадает результат с ошибкой reject  
-// }).catch(function(data){
-//     console.log('--- catch ---');
-//     console.log('Ответ на предыдущем шаге:', data);
-//     console.log('Отпуск отменяеться :(');
-// })
+function checkRooms (){
+    return new Promise(function(resolve, reject){
+        setTimeout(function () {
+            console.log('Проверяем номера в отеле...');
+            const availableRooms = true;
+    
+            if (availableRooms) {
+                resolve('Номера есть!');
+            } else {
+                reject('Номеров нет.');
+            }
+        }, 1500)
+    });
+}
 
-checkRooms.then(function(data){
+function checkTickets(data){
     return new Promise(function(resolve, reject){
         setTimeout(() => {
             console.log('--- then 1 ---');
@@ -43,12 +39,17 @@ checkRooms.then(function(data){
             }
         }, 1000)
     })
-}).then(function(data){
-    console.log('--- then 2 ---');
+}
+
+function success(data){
+    console.log('--- success ---');
     console.log('Ответ на предыдущем шаге:', data);
     console.log('Едем в отпуск! :)');
-}).catch(function(data){
-    console.log('--- catch ---');
+}
+
+function failed(data) {
+    console.log('--- failed ---');
     console.log('Ответ на предыдущем шаге:', data);
     console.log('Отпуск отменяеться :(');
-})
+}
+

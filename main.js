@@ -1,44 +1,54 @@
 'use strict';
 
-// ------------------ Создание промиса ----------------
+// ------------------ Цепочка промисов. Несколько промисов с setTimeout ----------------
 
-const myPromise = new Promise(function (resolve, reject){
-    console.log('Promise created');
-    setTimeout(function(){
-        const response = true;
+const checkRooms = new Promise(function(resolve, reject){
+    setTimeout(function () {
+        console.log('Проверяем номера в отеле...');
+        const availableRooms = true;
 
-        if (response) {
-            let message = 'SUCCESS'
-            resolve(message);
+        if (availableRooms) {
+            resolve('Номера есть!');
         } else {
-            let message = 'FAILED'
-            reject(message);
+            reject('Номеров нет.');
         }
     }, 1500)
 });
-// для гарантированного последовательного выполения ассинхроннго кода необходимо оборачивать в Promise каждый then
-myPromise.then(function(data){
+// в then попадает успешный результат resolve
+// checkRooms.then(function(data){
+//     console.log('--- then 1 ---');
+//     console.log('Ответ на предыдущем шаге:', data);
+//     console.log('Едем в отпуск! :)');
+// в catch попадает результат с ошибкой reject  
+// }).catch(function(data){
+//     console.log('--- catch ---');
+//     console.log('Ответ на предыдущем шаге:', data);
+//     console.log('Отпуск отменяеться :(');
+// })
+
+checkRooms.then(function(data){
     return new Promise(function(resolve, reject){
         setTimeout(() => {
-            console.log('Then 1');
-            console.log(data);
-
-            const response = false;
-            if (response) {
-                resolve('Data from then 1')
+            console.log('--- then 1 ---');
+            console.log('Ответ на предыдущем шаге:', data);
+            console.log('Проверяем авиабилеты...');
+            const availableTickets = true;
+        
+            if (availableTickets) {
+                let message = 'Билеты есть!';
+                resolve(message)
             } else {
-                reject('Data from then 1')
+                let message = 'Билетов нет';
+                reject(message);
             }
         }, 1000)
     })
-    
 }).then(function(data){
-    setTimeout(() => {
-        console.log('Then 2');
-        console.log(data);
-    }, 500)
+    console.log('--- then 2 ---');
+    console.log('Ответ на предыдущем шаге:', data);
+    console.log('Едем в отпуск! :)');
 }).catch(function(data){
-    console.log('Catch');
-    console.log(data);
+    console.log('--- catch ---');
+    console.log('Ответ на предыдущем шаге:', data);
+    console.log('Отпуск отменяеться :(');
 })
-

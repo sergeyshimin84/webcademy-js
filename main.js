@@ -55,27 +55,75 @@
 
 // ------------------ Async function. Асинхронные функции. Потребление промиса ----------------
 
-function promiseFunction (){
-    return new Promise(function(resolve, reject){
-        setTimeout(() => {
-            const result = false;
+// function promiseFunction (){
+//     return new Promise(function(resolve, reject){
+//         setTimeout(() => {
+//             const result = false;
             
-            if (result) {
-                resolve('DONE!');
+//             if (result) {
+//                 resolve('DONE!');
+//             } else {
+//                 reject('FAIL!'); 
+//             }
+//         }, 500)
+//     });
+// }
+// Создаем асинхронную функцию, ожидаем выполнение promiseFunction (при положительном результате выполняется try, иначе catch)
+// async function startPromise(){
+//     try {
+//         const result = await promiseFunction();
+//         console.log(result);
+//     } catch (err) {
+//         console.log(err);
+//     }
+// }
+
+// startPromise()
+
+// ------------------ Несколько асинхронных операций. Серия промисов ----------------
+
+function checkRooms (){
+    return new Promise(function(resolve, reject){
+        setTimeout(function () {
+            console.log('Проверяем номера в отеле...');
+            let availableRooms = true;
+    
+            if (availableRooms) {
+                resolve('Номера есть!');
             } else {
-                reject('FAIL!'); 
+                reject('Номеров нет.');
             }
-        }, 500)
+        }, 1500)
     });
 }
-// Создаем асинхронную функцию, ожидаем выполнение promiseFunction (при положительном результате выполняется try, иначе catch)
-async function startPromise(){
-    try {
-        const result = await promiseFunction();
-        console.log(result);
-    } catch (err) {
-        console.log(err);
-    }
+
+function checkTickets(data){
+    return new Promise(function(resolve, reject){
+        setTimeout(() => {
+            console.log('--- then 1 ---');
+            console.log('Ответ на предыдущем шаге:', data);
+            console.log('Проверяем авиабилеты...');
+            let availableTickets = true;
+        
+            if (availableTickets) {
+                let message = 'Билеты есть!';
+                resolve(message)
+            } else {
+                let message = 'Билетов нет';
+                reject(message);
+            }
+        }, 1000)
+    })
 }
 
-startPromise()
+function submitVacation(data){
+    console.log('--- submitVacation ---');
+    console.log('Ответ на предыдущем шаге:', data);
+    console.log('Едем в отпуск! :)');
+}
+
+function cancelVacation(data) {
+    console.log('--- cancelVacation ---');
+    console.log('Ответ на предыдущем шаге:', data);
+    console.log('Отпуск отменяеться :(');
+}

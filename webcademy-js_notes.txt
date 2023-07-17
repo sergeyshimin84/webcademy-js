@@ -947,3 +947,30 @@ function failed(data) {
     console.log('Отпуск отменяеться :(');
 }
 
+Async function. Асинхронные функции. Потребление промиса
+
+function promiseFunction (){
+    return new Promise(function(resolve, reject){
+        setTimeout(() => {
+            const result = false;
+            
+            if (result) {
+                resolve('DONE!');
+            } else {
+                reject('FAIL!'); 
+            }
+        }, 500)
+    });
+}
+// Создаем асинхронную функцию, ожидаем выполнение promiseFunction 
+//(при положительном результате выполняется try, иначе catch)
+async function startPromise(){
+    try {
+        const result = await promiseFunction();
+        console.log(result);
+    } catch (err) {
+        console.log(err);
+    }
+}
+
+startPromise()

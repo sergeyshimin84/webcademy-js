@@ -103,7 +103,7 @@ function checkTickets(data){
             console.log('--- then 1 ---');
             console.log('Ответ на предыдущем шаге:', data);
             console.log('Проверяем авиабилеты...');
-            let availableTickets = true;
+            let availableTickets = false;
         
             if (availableTickets) {
                 let message = 'Билеты есть!';
@@ -127,3 +127,27 @@ function cancelVacation(data) {
     console.log('Ответ на предыдущем шаге:', data);
     console.log('Отпуск отменяеться :(');
 }
+// Вариант запуска функции без try catch (упрощенный, не применять на практике), нет обработчика ошибок
+// async function checkVacation(){
+//     const roomsResult = await checkRooms();
+//     const ticketsResult = await checkTickets(roomsResult);
+
+//     if(ticketsResult) {
+//         submitVacation(ticketsResult)
+//     } else {
+//         cancelVacation(ticketsResult)
+//     }
+// }
+// Корректный вариант с применением try catch (теперь обрабатывает ошибки)
+async function checkVacation(){
+
+    try {
+        const roomsResult = await checkRooms();
+        const ticketsResult = await checkTickets(roomsResult);
+        submitVacation(ticketsResult)
+    } catch (err) {
+        cancelVacation(err)
+    }
+}
+
+checkVacation();
